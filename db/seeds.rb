@@ -3,7 +3,7 @@ puts "🌱 Seeding spices..."
 # Seed your database here
 Player.create(name: "Jon", rank: "Diamond", )
 Player.create(name: "Nate", rank: "Silver")
-Player.create(name: "GeorgeK" rank: "Silver")
+Player.create(name: "GeorgeK", rank: "Silver")
 Player.create(name: "GeorgeR", rank: "Bronze")
 Player.create(name: "Elizabeth", rank: "Bronze")
 Player.create(name: "Luis", rank: "Gold")
@@ -15,9 +15,9 @@ Player.create(name: "Riz", rank: "Silver")
 agent_names = ["Omen", "Astra", "Harbor", "Viper", "Brimstone", "Jett", "Reyna", "Pheonix", "Neon", "Yoru", "Raze", "Killjoy", "Sage", "Cypher", "Chamber",
  "Skye", "Breach", "Fade", "Kay-o", "Sova"]
 
-Player.all.each do |agent|
+Player.all.each do |player|
     3.times do
-      Agent.create(name: agent_names.sample, ranking: rand(1..3), player_id: player_id)
+      Agent.create(name: agent_names.sample, ranking: rand(1..3), player_id: player.id)
     end
   end
 
