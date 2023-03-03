@@ -6,7 +6,7 @@ class ApplicationController < Sinatra::Base
   # Add your routes here
   get "/players" do
     players=Player.all
-    players.to_json(include: {agents: {only: [:name]}})
+    players.to_json(include: :agents)
   end
 
   get '/players/:id' do
@@ -20,10 +20,10 @@ class ApplicationController < Sinatra::Base
   end
 
   post "/agents" do
-    agent = Agent.create(
+    player = Player.find(params[player_id])
+    agent = player.agents.create(
       name: params[:name],
-      ranking: params[:ranking],
-      player_id: params[player_id]
+      ranking: params[:ranking]
     )
     agent.to_json
   end
