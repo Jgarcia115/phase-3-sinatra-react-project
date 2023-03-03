@@ -16,8 +16,8 @@ agent_names = ["Omen", "Astra", "Harbor", "Viper", "Brimstone", "Jett", "Reyna",
  "Skye", "Breach", "Fade", "Kay-o", "Sova"]
 
 Player.all.each do |player|
-    3.times do
-      Agent.create(name: agent_names.sample, ranking: rand(1..3), player_id: player.id)
+    2.times do
+      Agent.create(name: agent_names.sample, ranking: rand(1..2), player_id: player.id)
     end
   end
 

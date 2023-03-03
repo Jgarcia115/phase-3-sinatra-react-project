@@ -1,3 +1,5 @@
+require 'pry'
+
 class ApplicationController < Sinatra::Base
   set :default_content_type, 'application/json'
   
@@ -5,6 +7,11 @@ class ApplicationController < Sinatra::Base
   get "/players" do
     players=Player.all
     players.to_json
+  end
+
+  get '/players/:id' do
+    player = Player.find(params[:id])
+    player.to_json
   end
 
   get "/agents" do
