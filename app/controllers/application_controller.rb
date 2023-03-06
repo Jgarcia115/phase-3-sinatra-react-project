@@ -23,7 +23,6 @@ class ApplicationController < Sinatra::Base
     player = Player.find(params[player_id])
     agent = player.agents.create(
       name: params[:name],
-      ranking: params[:ranking]
     )
     agent.to_json
   end
@@ -31,23 +30,24 @@ class ApplicationController < Sinatra::Base
   post "/players" do
     player = Player.create(
       name: params[:name],
-      rank: params[:rank]
+      rank: params[:rank],
+      agents: params[:agents]
     )
     player.to_json
   end
 
-  patch '/players/:id' do
-    player = Player.find(params[:id])
-    player.update(
-      rank: params[:rank]
+  patch '/agents/:id' do
+    agent = Agent.find(params[:id])
+    agent.update(
+      name: params[:name]
     )
-    player.to_json
+    agent.to_json
   end
 
-  delete '/players/:id' do
-    player = Player.find(params[:id])
-    player.destroy
-    player.to_json
+  delete '/agents/:id' do
+    agent = Agent.find(params[:id])
+    agent.destroy
+    agent.to_json
   end
 
 end
