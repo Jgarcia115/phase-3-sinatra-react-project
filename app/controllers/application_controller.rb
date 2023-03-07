@@ -20,7 +20,7 @@ class ApplicationController < Sinatra::Base
   end
 
   post "/agents" do
-    player = Player.find(params[player_id])
+    player = Player.find(params[:player_id])
     agent = player.agents.create(
       name: params[:name],
     )
@@ -30,10 +30,9 @@ class ApplicationController < Sinatra::Base
   post "/players" do
     player = Player.create(
       name: params[:name],
-      rank: params[:rank],
-      agents: params[:agents]
+      rank: params[:rank]
     )
-    player.to_json
+    player.to_json(include: :agents)
   end
 
   patch '/agents/:id' do
